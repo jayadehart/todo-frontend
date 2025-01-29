@@ -1,6 +1,6 @@
 "use client";
 
-import { toSentenceCase, type TaskType } from "../types";
+import { type TaskType } from "../types";
 import checked from "../../../public/checked.svg";
 import unchecked from "../../../public/unchecked.svg";
 import trash from "../../../public/trash.svg";
@@ -10,6 +10,7 @@ import { deleteTask, updateTask } from "../_api/tasks";
 import { colors } from "../util/colors";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import { toSentenceCase, truncateString } from "../util/stringUtils";
 type TaskProps = {
   task: TaskType;
   placeholder?: boolean;
@@ -116,9 +117,9 @@ const Task = ({ task, placeholder = false }: TaskProps) => {
           }
         />
         <div className="flex items-center justify-center flex-1">
-          {task.title}
+          {truncateString(task.title, 48)}
         </div>
-        <div className="border border-lightGray bg-medGray flex-shrink-0 ml-auto p-2 px-4 rounded-md">
+        <div className="border border-lightGray bg-medGray flex-shrink-0 ml-auto p-2 px-4 rounded-md hidden xl:flex">
           {toSentenceCase(task.priority.toString())}
         </div>
         <Image

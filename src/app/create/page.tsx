@@ -10,6 +10,7 @@ import { useState, useEffect } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createTask } from "../_api/tasks";
 import { colors } from "../util/colors";
+import { Color, Priority, TaskType } from "../types";
 
 const CreatePage = () => {
   const queryClient = useQueryClient();
@@ -45,7 +46,34 @@ const CreatePage = () => {
 
   const createMutation = useMutation({
     mutationFn: createTask,
-    onMutate: () => {
+    onMutate: (newTask) => {
+      queryClient.setQueryData<TaskType[]>(["tasks"], (oldData) => {
+        let { color, priority, title } = newTask;
+        let highestId = 0;
+
+        if (!oldData || oldData.length === 0) {
+          highestId = 0;
+        }
+
+        highestId =
+          oldData?.reduce((max, task) => Math.max(max, task.id), 0) || 0;
+
+        const fullTask: TaskType = {
+          id: highestId + 1,
+          color: Color[color.toUpperCase() as keyof typeof Color],
+          priority: Priority[priority.toUpperCase() as keyof typeof Priority],
+          title,
+          completed: false,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        };
+
+        if (!oldData) {
+          return [fullTask];
+        }
+
+        return [...oldData, fullTask];
+      });
       setFormReady(false);
       setFormState({
         title: "",

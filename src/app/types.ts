@@ -18,7 +18,7 @@ export enum Color {
 
 export type TaskType = {
   id: number;
-  title: String;
+  title: string;
   color: Color;
   priority: Priority;
   completed: Boolean;
@@ -29,11 +29,7 @@ export type TaskType = {
 };
 
 export type SubmitValues = {
-  title: String;
-  color: String;
-  priority: String;
-};
-
-export const toSentenceCase = (str: string) => {
-  return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+  title: string;
+  color: string;
+  priority: string;
 };

@@ -1,4 +1,4 @@
-import { Priority, TaskType, toSentenceCase } from "@/app/types";
+import { Priority, TaskType } from "@/app/types";
 import { useDroppable } from "@dnd-kit/core";
 import {
   SortableContext,
@@ -6,6 +6,7 @@ import {
 } from "@dnd-kit/sortable";
 import { ReactNode } from "react";
 import React from "react";
+import { toSentenceCase } from "@/app/util/stringUtils";
 
 type TaskSectionProps = {
   id: Priority;
