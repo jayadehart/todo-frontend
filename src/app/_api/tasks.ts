@@ -39,6 +39,7 @@ export const createTask = async (task: SubmitValues) => {
     },
     body: JSON.stringify(task),
   });
-  if (!response.ok) throw new Error("Failed to delete task");
+
+  if (!response.ok) throw new Error("Failed to create task");
   return response.json();
 };

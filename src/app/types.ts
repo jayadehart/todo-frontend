@@ -5,15 +5,15 @@ export enum Priority {
 }
 
 export enum Color {
-  RED,
-  ORANGE,
-  YELLOW,
-  GREEN,
-  BLUE,
-  INDIGO,
-  PURPLE,
-  PINK,
-  BROWN,
+  RED = "RED",
+  ORANGE = "ORANGE",
+  YELLOW = "YELLOW",
+  GREEN = "GREEN",
+  BLUE = "BLUE",
+  INDIGO = "INDIGO",
+  PURPLE = "PURPLE",
+  PINK = "PINK",
+  BROWN = "BROWN",
 }
 
 export type TaskType = {
